@@ -1,0 +1,30 @@
+<% title = "Chat con una persona famosa" %>
+
+<h1 class="mb-4">Habla con una persona famosa</h1>
+
+<form id="chat-form">
+  <div class="mb-3 d-flex align-items-center">
+    <select name="selected" id="celebrity-select" class="form-select me-3" required>
+      <option value="">Selecciona una persona</option>
+      <% Object.entries(celebrityMap).forEach(([id, celeb]) => { %>
+        <option value="<%= id %>" data-avatar="/images/<%= id %>.jpg"
+          <%= selectedId === id ? 'selected' : '' %>>
+          <%= celeb.name %>
+        </option>
+      <% }) %>
+    </select>
+    <img id="selected-avatar"
+         src="<%= selectedId ? '/images/' + selectedId + '.jpg' : '/images/fallback.jpg' %>"
+         alt="Avatar"
+         class="avatar rounded-circle">
+  </div>
+  
+  <div class="mb-3">
+    <input type="text" name="message" class="form-control" placeholder="Escribe tu mensaje..." required />
+  </div>
+  
+  <button type="submit" class="btn btn-primary me-2">Enviar</button>
+  <button type="button" id="cancel-button" class="btn btn-warning">Detener respuesta</button>
+</form>
+
+<div class="mt-4 chat-container" id="chat-container"></div>

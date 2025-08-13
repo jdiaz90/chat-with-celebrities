@@ -1,0 +1,40 @@
+{
+  "name": "chat-with-celebrities",
+  "version": "1.0.0",
+  "description": "App Express con integración a Ollama",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "concurrently \"nodemon app.js\" \"webpack serve --mode development\"",
+    "serve": "webpack serve --mode development",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest",
+    "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
+    "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage"
+  },
+  "keywords": [],
+  "author": "Javier",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "marked": "^16.1.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "css-loader": "^7.1.2",
+    "dotenv": "^17.2.1",
+    "jest": "^29.7.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "nodemon": "^3.0.1",
+    "style-loader": "^4.0.0",
+    "supertest": "^7.1.4",
+    "webpack": "^5.101.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
