@@ -1,9 +1,9 @@
-// Configuración básica para Jest con soporte ES Modules
 export default {
   testEnvironment: 'node',
-  transform: {},
-  moduleFileExtensions: ['js', 'json'],
+  transform: {}, // sin Babel
+  moduleFileExtensions: ['js', 'mjs', 'json'],
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  testMatch: ['**/tests/**/*.test.js'],
+  testMatch: ['**/tests/**/*.test.mjs'],
+  verbose: true
 };

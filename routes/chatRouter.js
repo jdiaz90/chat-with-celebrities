@@ -1,43 +1,38 @@
-import express from "express";
+/**
+ * @file routes/chatRouter.js
+ * @description Rutas de chat con personajes famosos (vistas y streaming de respuesta).
+ */
+
+import express from 'express';
 import {
-  renderChatPage,       // Renderiza la vista principal del chat con una celebridad
-  streamChatResponse    // Maneja el POST y transmite la respuesta en tiempo real
-} from "../controllers/chatController.js";
-
-const router = express.Router();
+  renderChatPage,
+  streamChatResponse
+} from '../controllers/chatController.js';
+import { auth } from '../middlewares/authMiddleware.js';
 
 /**
- * 🔎 GET /generate/:id
- *
+ * Router de chat.
+ * @type {import('express').Router}
+ */
+const chatRouter = express.Router();
+
+/**
+ * GET /generate/:id
  * Genera la vista de chat para una celebridad concreta.
- * - Extrae el `id` de la celebridad desde los parámetros de la URL.
- * - Busca los datos asociados y renderiza la plantilla `chat`.
- * - Si no existe la celebridad, devuelve 404.
+ * Ruta protegida por middleware `auth`.
  *
- * @name GET/generate/:id
- * @function
- * @memberof module:routes/chatRouter
- * @param {string} id - Identificador de la celebridad (en la URL).
- * @returns {HTML} Render de la vista de chat.
+ * @param {string} id - Identificador de la celebridad en la URL.
  */
-router.get("/generate/:id", renderChatPage);
+chatRouter.get('/generate/:id', auth, renderChatPage);
 
 /**
- * 📡 POST /stream/:id
- *
+ * POST /stream/:id
  * Inicia el streaming de respuesta desde el modelo.
- * - Lee el `id` de la celebridad y el `message` del cuerpo de la petición.
- * - Construye el prompt y llama al modelo correspondiente.
- * - Transmite la respuesta al cliente en tiempo real mediante texto plano en chunks.
- * - Valida parámetros y devuelve 400/404 en caso de error.
+ * Ruta protegida por middleware `auth`.
  *
- * @name POST/stream/:id
- * @function
- * @memberof module:routes/chatRouter
- * @param {string} id - Identificador de la celebridad (en la URL).
- * @body {string} message - Texto enviado por el usuario.
- * @returns {Stream} Respuesta en streaming.
+ * @param {string} id - Identificador de la celebridad en la URL.
+ * @body {string} message - Mensaje enviado por el usuario.
  */
-router.post("/stream/:id", streamChatResponse);
+chatRouter.post('/stream/:id', auth, streamChatResponse);
 
-export default router;
+export default chatRouter;

@@ -12,17 +12,26 @@
     "build": "webpack --mode production",
     "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest",
     "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
-    "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage"
+    "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage",
+    "db:init": "node database/init.js",
+    "db:seed": "node database/seed.js"
   },
   "keywords": [],
   "author": "Javier",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
     "marked": "^16.1.2",
-    "node-fetch": "^3.3.2"
+    "mongodb": "^6.18.0",
+    "node-fetch": "^3.3.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",

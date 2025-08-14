@@ -1,0 +1,48 @@
+<h1>Registro de usuario</h1>
+
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/auth/register" method="POST">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input 
+      type="text" 
+      class="form-control"
+      id="nombre" 
+      name="nombre" 
+      value="<%= name || '' %>" 
+      required
+    >
+  </div>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo electrónico:</label>
+    <input 
+      type="email" 
+      class="form-control"
+      id="email" 
+      name="email" 
+      value="<%= email || '' %>" 
+      required
+    >
+  </div>
+  
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña:</label>
+    <input 
+      type="password" 
+      class="form-control"
+      id="password" 
+      name="password" 
+      required
+    >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Crear cuenta</button>
+</form>
+
+<p class="mt-3">
+  ¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión aquí</a>
+</p>
